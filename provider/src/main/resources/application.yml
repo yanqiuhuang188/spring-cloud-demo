@@ -1,0 +1,48 @@
+server:
+  port: 7901
+
+spring:
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+#      这里弄清楚
+
+#############################
+  datasource:
+    platform: h2
+    schema: classpath:schema.sql
+    data: classpath:data.sql
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:~/test
+    username: sa
+    root:
+##############################
+
+#  h2:
+#    console:
+#      enabled: true
+  application:
+    # 名称不要下横线，无法解析
+    name: provider
+
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    com.multiple.demo: DEBUG
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7900/eureka
+#      defaultZone: http://user:123456@localhost:7900/eureka
+  instance:
+    hostname: localhost
+#    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+

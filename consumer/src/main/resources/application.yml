@@ -1,0 +1,15 @@
+server:
+  port: 8000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7900/eureka
+#      defaultZone: http://user:123456@localhost:7900/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+spring:
+  application:
+    name: consumer
